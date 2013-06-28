@@ -1,6 +1,6 @@
 from pyramid.view import view_config
 
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
+@view_config(route_name='home', renderer='templates/home.xsl')
 def my_view(request):
-    return {'project': 'sample_app'}
+    return '<a>aa</a>'
