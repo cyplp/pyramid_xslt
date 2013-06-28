@@ -10,6 +10,7 @@ from lxml import etree
 
 from pyramid.interfaces import IRenderer
 from pyramid.path import package_path
+from pyramid.response import Response
 
 gsm = getGlobalSiteManager()
 
@@ -55,14 +56,37 @@ class XslRenderer(object):
     def __init__(self, xslfilename):
         """
         """
+        print etree.parse(xslfilename)
         self._transform = etree.XSLT(etree.parse(xslfilename))
 
     def __call__(self, value, system):
         """
         """
+        xslArgs = None
+        responseArgs = None
 
-        print value
-        print system
+        if type(value) is not tuple:
+            doc = self._mkdoc(value)
 
-        doc = etree.fromstring(value)
-        return etree.tostring(self._transform(doc))
+        else:
+            doc = self._mkdoc(value[0])
+            try:
+                xslArgs  = {key: str(value[1][key]) for key in  value[1]}
+                try :
+                   responseArgs = value[2]
+                except IndexError:
+                   pass
+            except IndexError:
+               pass
+
+        return etree.tostring(self._transform(doc, **xslArgs))
+
+    @staticmethod
+    def _mkdoc(value):
+        # TODO url and file
+        if isinstance(value, etree._Element):
+            return value
+        elif value.startswith('http') or os.path.isfile(value):
+            etree.parse(value)
+        else:
+            return etree.fromstring(value)
