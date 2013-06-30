@@ -7,19 +7,24 @@ version = '0.0'
 setup(name='pyramid_xslt',
       version=version,
       description="Xslt renderer for pyramid",
-      long_description="""\
+      long_description="""
+      Xslt renderer for pyramid using lxml.
       """,
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      classifiers=['Framework :: Pyramid',
+                   'License :: OSI Approved :: MIT License',
+                   'Topic :: Text Processing :: Markup :: XML'],
       keywords='pyramid xslt renderer',
       author='Cyprien Le Pannérer',
       author_email='cyplp@free.fr',
-      url='',
+      url='https://github.com/cyplp/pyramid_xslt',
       license='MIT',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'lxml',
+          'zope.component',
+          'zope.interface',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
