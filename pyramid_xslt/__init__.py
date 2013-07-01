@@ -22,7 +22,7 @@ def includeme(config):
     config.add_renderer('.xsl', XsltRendererFactory)
 
 
-class XsltRendererFactory:
+class XsltRendererFactory(object):
     def __init__(self, info):
         """
         Factory constructor.
