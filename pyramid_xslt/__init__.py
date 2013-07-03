@@ -68,8 +68,8 @@ class XslRenderer(object):
         value[1] is a dictionnary of arguments to passed to the xsl.
         value[2] is a dictionnary of arguments for pyramid response. /!\ not implemented yet.
         """
-        xslArgs = None
-        responseArgs = None
+        xslArgs = {}
+        responseArgs = {}
 
         if type(value) is not tuple:
             doc = self._mkdoc(value)
