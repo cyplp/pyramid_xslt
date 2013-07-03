@@ -1,4 +1,5 @@
 import unittest
+import sys
 # import transaction
 
 # from pyramid import testing
@@ -6,10 +7,19 @@ import unittest
 # from .models import DBSession
 from lxml import etree
 
+from zope.interface.registry import Components
+from pyramid.interfaces import IRenderer
+
 from pyramid_xslt import XsltRendererFactory
 from pyramid_xslt import XslRenderer
 
 
+
+class FakeRequest(object):
+    pass
+
+class FakeInfo(object):
+    package = sys.modules[__name__]
 class TestXslFactory(unittest.TestCase):
     def test_factory_init(self):
         """
@@ -22,6 +32,30 @@ class TestXslFactory(unittest.TestCase):
         """
         Test XsltRendererFactory __call__.
         """
+        system = {}
+
+        system['renderer_name'] = '../sample_app/sample_app/templates/home.xsl'
+        system['request'] = FakeRequest()
+        system['request'].registry = Components()
+
+        self.assertEquals(system['request'].registry.queryUtility(IRenderer,
+                                                                  '../sample_app/sample_app/templates/home.xsl'), None)
+
+        xf = XsltRendererFactory(FakeInfo())
+        result = xf('<a>bb</a>', system)
+
+        self.assertEquals('<b>bb</b>', result)
+        renderer = system['request'].registry.queryUtility(IRenderer,
+                                                            '../sample_app/sample_app/templates/home.xsl')
+        self.assertNotEquals(renderer, None)
+        self.assertTrue(isinstance(renderer, XslRenderer))
+
+
+        result = xf('<a>bb</a>', system)
+        self.assertEquals('<b>bb</b>', result)
+
+        self.assertTrue(renderer is system['request'].registry.queryUtility(IRenderer,
+                                                            '../sample_app/sample_app/templates/home.xsl'))
 
 
 class TestXslRender(unittest.TestCase):
