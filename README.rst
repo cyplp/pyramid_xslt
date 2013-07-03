@@ -6,6 +6,9 @@ Rendering for pyramid_ using XSLT.
 
 .. _pyramid : http://docs.pylonsproject.org/projects/pyramid/en/latest/
 
+.. image:: https://travis-ci.org/cyplp/pyramid_xslt.png?branch=master
+   :target: https://travis-ci.org/cyplp/pyramid_xslt
+
 
 Usage
 -----
