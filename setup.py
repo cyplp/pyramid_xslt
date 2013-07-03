@@ -7,9 +7,7 @@ version = '0.0'
 setup(name='pyramid_xslt',
       version=version,
       description="Xslt renderer for pyramid",
-      long_description="""
-      Xslt renderer for pyramid using lxml.
-      """,
+      long_description= open('README.rst').read(),
       classifiers=['Framework :: Pyramid',
                    'License :: OSI Approved :: MIT License',
                    'Topic :: Text Processing :: Markup :: XML'],
