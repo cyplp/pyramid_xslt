@@ -1,4 +1,3 @@
-========================
 Xslt renderer for pyramid
 =========================
 
@@ -9,7 +8,7 @@ Rendering for pyramid_ using XSLT.
 
 
 Usage
-=====
+-----
 
 You can include the xslt rendering in your pyramid app via :
 
