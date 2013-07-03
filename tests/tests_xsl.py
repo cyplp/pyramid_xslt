@@ -93,9 +93,6 @@ class TestXslRender(unittest.TestCase):
         result = xslt(etree.fromstring('<a>bb</a>'), {})
         self.assertEquals('<b>bb</b>', result)
 
-        # import os.path
-        # print os.path.isfile('tests/fake.xml')
-
         result = xslt('tests/fake.xml', {})
         self.assertEquals('<b>bb</b>', result)
 
@@ -128,7 +125,6 @@ class TestTween(unittest.TestCase):
     def test_autoconfig(self):
         """
         """
-
-
+#        self.assertEquals(self.app.get('/'), '<a>bb</a>')
 
 
