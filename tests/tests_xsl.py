@@ -4,6 +4,7 @@ import unittest
 # from pyramid import testing
 
 # from .models import DBSession
+from lxml import etree
 
 from pyramid_xslt import XsltRendererFactory
 from pyramid_xslt import XslRenderer
@@ -31,7 +32,7 @@ class TestXslRender(unittest.TestCase):
         Test XslRenderer __init__.
         """
         xslt = XslRenderer('sample_app/sample_app/templates/home.xsl')
-        # TODO check _transform
+        self.assertTrue(isinstance(xslt._transform, etree.XSLT))
         # TODO check interface
 
     def test_call(self):
