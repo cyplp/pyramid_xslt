@@ -1,8 +1,8 @@
 import unittest
 import sys
 # import transaction
-
-# from pyramid import testing
+from pyramid import testing
+from webtest import TestApp
 
 # from .models import DBSession
 from lxml import etree
@@ -81,7 +81,7 @@ class TestXslRender(unittest.TestCase):
         result = xslt('<a>bb</a>', {})
         self.assertEquals('<b>bb</b>', result)
 
-        result = xslt(('<a>bb</a>'), {})
+        result = xslt(('<a>bb</a>',), {})
         self.assertEquals('<b>bb</b>', result)
 
         result = xslt(('<a>bb</a>', {}), {})
@@ -112,5 +112,23 @@ class TestXslRender(unittest.TestCase):
 
         self.assertTrue(isinstance(xslt._mkdoc('tests/fake.xml'),
                                    etree._ElementTree))
+
+def home(request):
+    return """<a>bb</a>"""
+
+class TestTween(unittest.TestCase):
+
+    def setUp(self):
+        self.config = testing.setUp()
+        self.config.include("pyramid_xslt")
+        self.config.add_route('home', '/')
+        self.config.add_view(route_name='home', view=home)
+        self.app = TestApp(self.config.make_wsgi_app())
+
+    def test_autoconfig(self):
+        """
+        """
+
+
 
 
