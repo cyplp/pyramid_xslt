@@ -94,6 +94,6 @@ class XslRenderer(object):
         if isinstance(value, etree._Element):
             return value
         elif value.startswith('http') or os.path.isfile(value):
-            etree.parse(value)
+            return etree.parse(value)
         else:
             return etree.fromstring(value)
