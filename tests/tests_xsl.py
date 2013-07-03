@@ -96,8 +96,8 @@ class TestXslRender(unittest.TestCase):
         # import os.path
         # print os.path.isfile('tests/fake.xml')
 
-        # result = xslt('tests/fake.xml', {})
-        # self.assertEquals('<b>bb</b>', result)
+        result = xslt('tests/fake.xml', {})
+        self.assertEquals('<b>bb</b>', result)
 
     def test_mkdoc(self):
         """
