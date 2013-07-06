@@ -1,0 +1,12 @@
+[report]
+omit =
+    buildout-cache/eggs/*
+    parts/*
+    eggs/*
+    */test*
+    develop-eggs/*
+    sample_app/*
+
+exclude_lines =
+    if self.debug:
+    raise NotImplementedError
