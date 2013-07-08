@@ -3,12 +3,8 @@ python:
   - 2.7
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-<<<<<<< HEAD
 #  - python bootstrap.py
     pip install zc.buildout
-=======
-  - python bootstrap.py
->>>>>>> 9c831cee6e8f327b7adec6ddb40d6ccec923b747
   - bin/buildout
 # command to run tests, e.g. python setup.py test
 script:
