@@ -3,7 +3,7 @@ python:
   - 2.7
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-  - python bootstrap.py -d -v 1.7
+  - python bootstrap.py
   - bin/buildout
 # command to run tests, e.g. python setup.py test
 script:
