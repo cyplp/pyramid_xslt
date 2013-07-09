@@ -24,6 +24,7 @@ class XsltRendererFactory(object):
         Factory constructor.
         """
         self._info = info
+        print info
 
     def __call__(self, value, system):
         """

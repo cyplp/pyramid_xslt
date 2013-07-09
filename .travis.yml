@@ -5,12 +5,12 @@ python:
 install:
 #  - python bootstrap.py
    - pip install zc.buildout
+   - pip install coveralls
    - buildout
 # command to run tests, e.g. python setup.py test
 script:
   - bin/coverage run bin/nosetests -sv
 
 after_sucess:
-  - pip install coveralls
   - coveralls
 
