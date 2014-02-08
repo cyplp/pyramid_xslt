@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0'
+version = '0.2.dev0'
 
 setup(name='pyramid_xslt',
       version=version,
