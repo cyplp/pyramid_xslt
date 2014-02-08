@@ -8,7 +8,6 @@ from lxml import etree
 
 from pyramid.interfaces import IRenderer
 from pyramid.path import package_path
-#from pyramid.response import Response
 
 
 def includeme(config):
@@ -24,7 +23,6 @@ class XsltRendererFactory(object):
         Factory constructor.
         """
         self._info = info
-        print info
 
     def __call__(self, value, system):
         """
@@ -32,6 +30,7 @@ class XsltRendererFactory(object):
 
         The renderer is cached for optimize access.
         """
+
         registry = system['request'].registry
         try:
             xsl = registry.getUtility(IRenderer, system['renderer_name'])
@@ -67,7 +66,6 @@ class XslRenderer(object):
         value[2] is a dictionnary of arguments for pyramid response. /!\ not implemented yet.
         """
         xslArgs = {}
-        responseArgs = {}
 
         if type(value) is not tuple:
             doc = self._mkdoc(value)
@@ -75,10 +73,6 @@ class XslRenderer(object):
             doc = self._mkdoc(value[0])
             try:
                 xslArgs  = {key: str(value[1][key]) for key in  value[1]}
-                try :
-                   responseArgs = value[2]
-                except IndexError:
-                   pass
             except IndexError:
                pass
 
