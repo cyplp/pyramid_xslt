@@ -3,6 +3,7 @@ import sys
 # import transaction
 from pyramid import testing
 from webtest import TestApp
+import six
 
 # from .models import DBSession
 from lxml import etree
@@ -47,7 +48,7 @@ class TestXslFactory(unittest.TestCase):
         xf = XsltRendererFactory(FakeInfo())
         result = xf('<a>bb</a>', system)
 
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
         renderer = system['request'].registry.queryUtility(IRenderer,
                                             '../sample_app/sample_app/templates/home.xsl')
         self.assertNotEquals(renderer, None)
@@ -55,7 +56,7 @@ class TestXslFactory(unittest.TestCase):
 
 
         result = xf('<a>bb</a>', system)
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         self.assertTrue(renderer is system['request'].registry.queryUtility(IRenderer,
                                                       '../sample_app/sample_app/templates/home.xsl'))
@@ -79,22 +80,22 @@ class TestXslRender(unittest.TestCase):
         xslt = XslRenderer('sample_app/sample_app/templates/home.xsl')
 
         result = xslt('<a>bb</a>', {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         result = xslt(('<a>bb</a>',), {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         result = xslt(('<a>bb</a>', {}), {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         result = xslt(('<a>bb</a>', {}, {}), {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         result = xslt(etree.fromstring('<a>bb</a>'), {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
         result = xslt('tests/fake.xml', {})
-        self.assertEquals('<b>bb</b>', result)
+        self.assertEquals(six.b('<b>bb</b>'), result)
 
     def test_mkdoc(self):
         """

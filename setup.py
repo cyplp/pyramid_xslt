@@ -23,6 +23,7 @@ setup(name='pyramid_xslt',
           'lxml',
           'zope.component',
           'zope.interface',
+          'six',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
